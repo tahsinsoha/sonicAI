@@ -3,47 +3,50 @@ import tensorflow as tf
 import numpy as np
 import math
 
-SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\EmoModel.h5"
+SAVED_MODEL_PATH = "./NoteModel.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
-TRACK_DURATION = 4  # measured in seconds
+TRACK_DURATION = 1  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
-class _Emotion_prediction_service:
+class _Note_prediction_service:
     """Singleton class for keyword spotting inference with trained models.
     :param model: Trained model
     """
 
     model = None
     _mapping = [
-        "Neutral",
-        "Calm",
-        "Happy",
-        "Sad"
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
     ]
     _instance = None
 
 
-    def predict_emotion(self, file_path):
+    def predict_note(self, file_path):
         """
         :param file_path (str): Path to audio file to predict
         :return predicted_keyword (str): Keyword predicted by the model
         """
 
         # extract MFCC
-        MFCCs = self.preprocess(file_path)
+        Chroma = self.preprocess(file_path)
 
         # we need a 4-dim array to feed to the model for prediction: (# samples, # time steps, # coefficients, 1)
-        MFCCs = MFCCs[np.newaxis, ...,np.newaxis]
-        print("shape", MFCCs.shape)
+        Chroma = Chroma[np.newaxis, ...,np.newaxis]
+        print("shape", Chroma.shape)
         # get the predicted label
-        predictions = self.model.predict(MFCCs)
+        predictions = self.model.predict(Chroma)
         predicted_index = np.argmax(predictions, axis= 1)
         predicted_keyword = np.array(self._mapping)[predicted_index.astype(int)]
         return predicted_keyword[0]
 
 
-    def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=2):
+    def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=1):
         """Extract MFCCs from audio file.
         :param file_path (str): Path of audio file
         :param num_mfcc (int): # of coefficients to extract
@@ -68,26 +71,27 @@ class _Emotion_prediction_service:
             finish = start + samples_per_segment
 
                     # extract mfcc
-            mfcc = librosa.feature.mfcc(signal[start:finish], sample_rate, n_mfcc=num_mfcc, n_fft=n_fft,
-                                                hop_length=hop_length)
-            mfcc = mfcc.T
+            chromagram = librosa.feature.chroma_stft(signal[start:finish], sr=sample_rate, n_fft=n_fft, \
+                                                             hop_length=hop_length, \
+                                                             n_chroma=12)
+            chromagram= chromagram.T
 
-            print("Eikhane ashe", samples_per_segment, start, finish, mfcc.shape)
+            print("Eikhane ashe", samples_per_segment, start, finish, chromagram.shape)
 
-            if len(mfcc) == num_mel_vectors_per_segment:
-               return mfcc
+            if len(chromagram) == num_mel_vectors_per_segment:
+               return chromagram
 
 
-def Emotion_prediction_service():
+def Note_prediction_service():
     """Factory function for Keyword_Spotting_Service class.
     :return _Keyword_Spotting_Service._instance (_Keyword_Spotting_Service):
     """
 
     # ensure an instance is created only the first time the factory function is called
-    if _Emotion_Prediction_Service._instance is None:
-        _Emotion_Prediction_Service._instance = _Emotion_Prediction_Service()
-        _Emotion_Prediction_Service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
-    return _Emotion_Prediction_Service._instance
+    if _Note_prediction_service._instance is None:
+        _Note_prediction_service._instance = _Note_prediction_service()
+        _Note_prediction_service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
+    return _Note_prediction_service._instance
 
 
 
@@ -95,8 +99,8 @@ def Emotion_prediction_service():
 if __name__ == "__main__":
 
     # create 2 instances of the keyword spotting service
-    eps = Emotion_Prediction_Service()
-    eps1 = Emotion_Prediction_Service()
+    eps = _Note_prediction_service()
+    eps1 = _Note_prediction_service()
 
     # check that different instances of the keyword spotting service point back to the same object (singleton)
     assert eps is eps1

@@ -47,6 +47,22 @@ function File( {selection}) {
         });
       
     }
+
+    if (selection.some(current => current.id === 3)) {
+      fetch("http://localhost:5000/predict_note", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+          setNote(result.note);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      
+    }
    
   };
 
@@ -70,6 +86,7 @@ function File( {selection}) {
         <button onClick={handleSubmission}>Submit</button>
         <p>{genre}</p>
         <p>{emotion}</p>
+        <p>{note}</p>
         
       </div>
     </div>
