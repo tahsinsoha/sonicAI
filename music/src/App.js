@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
-
+import Dropdown from "./component/DropDown";
 function App() {
   //   useEffect(() => {
   //     // POST request using fetch inside useEffect React hook
@@ -15,9 +15,32 @@ function App() {
 
   // // empty dependency array means this effect will only run once (like componentDidMount in classes)
   // }, []);
+  const items = [
+    {
+      id: 1,
+      value: 'Genre',
+    },
+    {
+      id: 2,
+      value: 'Emotion',
+    },
+    {
+      id: 3,
+      value: 'Note',
+    },
+  ];
 
   return (
     <div classname="App">
+      <div className="container">
+      <h1 style={{ textAlign: 'center' }}>
+        Music Hub{' '}
+        <span role="img" aria-label="Movie projector">
+          🎥
+        </span>
+      </h1>
+      <Dropdown title="Select movie" items={items} multiSelect />
+    </div>
       <FileUpload />
     </div>
   );
