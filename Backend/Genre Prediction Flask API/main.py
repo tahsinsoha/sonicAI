@@ -30,8 +30,7 @@ def predict_genre():
 
 	# instantiate keyword spotting service singleton and get prediction
 	gps = Genre_Prediction_Service()
-	eps = Emotion_prediction_service()
-	predicted_genre = gps.predict(file_name)
+	predicted_genre = gps.predict_genre(file_name)
 	#print("type holo ", type(gps))
 	
 	# we don't need the audio file any more - let's delete it!
@@ -57,8 +56,8 @@ def predict_emotion():
 	audio_file.save(file_name)
 
 	# instantiate keyword spotting service singleton and get prediction
-	eps = Emotion_Prediction_Service()
-	predicted_emotion = eps.predict(file_name)
+	eps = Emotion_prediction_service()
+	predicted_emotion = eps.predict_emotion(file_name)
 	#print("type holo ", type(gps))
 	
 	# we don't need the audio file any more - let's delete it!

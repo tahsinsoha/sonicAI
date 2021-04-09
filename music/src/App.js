@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect , useState } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
 import Dropdown from "./component/DropDown";
@@ -30,7 +30,7 @@ function App() {
       value: 'Note',
     },
   ];
-
+  const [selection, setSelection] = useState([]);
   return (
     <div classname="App">
       <div className="container">
@@ -40,10 +40,10 @@ function App() {
           🎥
         </span>
       </h1>
-      <p> {DropDown.selection}</p>
-      <Dropdown title="Select type" items={items} multiSelect />
+      
+      <Dropdown title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
     </div>
-      <FileUpload selection= {DropDown.selection} />
+      <FileUpload selection= {selection} />
      
     </div>
   );

@@ -13,7 +13,7 @@ function File( {selection}) {
     const formData = new FormData();
     
     formData.append("file", selectedFile);
-    if (selection.map(current => current.id === 1)) {
+    if (selection.some(current => current.id === 1)) {
       fetch("http://localhost:5000/predict_genre", {
         method: "POST",
         body: formData,
@@ -29,7 +29,7 @@ function File( {selection}) {
       
     }
 
-    if (selection.map(current => current.id === 2)) {
+    if (selection.some(current => current.id === 2)) {
       fetch("http://localhost:5000/predict_emotion", {
         method: "POST",
         body: formData,

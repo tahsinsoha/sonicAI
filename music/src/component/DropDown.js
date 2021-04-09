@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import "./Drop.scss"
-function Dropdown({ title, items, multiSelect = false }) {
+function Dropdown({ title, items, selection , change , multiSelect = false }) {
   const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 
   function handleOnClick(item) {
     if (!selection.some(current => current.id === item.id)) {
       if (!multiSelect) {
-        setSelection([item]);
+        change([item]);
       } else if (multiSelect) {
-        setSelection([...selection, item]);
+        change([...selection, item]);
       }
     } else {
       let selectionAfterRemoval = selection;
       selectionAfterRemoval = selectionAfterRemoval.filter(
         current => current.id !== item.id
       );
-      setSelection([...selectionAfterRemoval]);
+      change([...selectionAfterRemoval]);
     }
   }
 
