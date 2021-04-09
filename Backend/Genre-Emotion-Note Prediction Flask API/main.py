@@ -3,26 +3,16 @@ import os
 from flask import Flask, request, jsonify
 from genre_prediction_service import Genre_Prediction_Service
 from flask_cors import CORS
-<<<<<<< Updated upstream:Backend/Genre-Emotion-Note Prediction Flask API/main.py
 
-=======
->>>>>>> Stashed changes:Backend/Genre Prediction Flask API/main.py
 # instantiate flask app
 app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resource={
-<<<<<<< Updated upstream:Backend/Genre-Emotion-Note Prediction Flask API/main.py
     r"/*": {
         "origins": "*"
     }
 })
 
-=======
-    r"/*":{
-        "origins":"*"
-    }
-})
->>>>>>> Stashed changes:Backend/Genre Prediction Flask API/main.py
 
 @app.route("/predict", methods=["POST"])
 def predict():
