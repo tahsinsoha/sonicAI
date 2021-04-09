@@ -3,13 +3,13 @@ import tensorflow as tf
 import numpy as np
 import math
 
-SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\GenModel.h5"
+SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\EmoModel.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
 TRACK_DURATION = 4  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
-class _Emotion_Prediction_Service:
+class _Emotion_prediction_service:
     """Singleton class for keyword spotting inference with trained models.
     :param model: Trained model
     """
@@ -24,7 +24,7 @@ class _Emotion_Prediction_Service:
     _instance = None
 
 
-    def predict(self, file_path):
+    def predict_emotion(self, file_path):
         """
         :param file_path (str): Path to audio file to predict
         :return predicted_keyword (str): Keyword predicted by the model
@@ -78,7 +78,7 @@ class _Emotion_Prediction_Service:
                return mfcc
 
 
-def Emotion_Prediction_Service():
+def Emotion_prediction_service():
     """Factory function for Keyword_Spotting_Service class.
     :return _Keyword_Spotting_Service._instance (_Keyword_Spotting_Service):
     """

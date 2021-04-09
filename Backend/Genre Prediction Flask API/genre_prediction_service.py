@@ -24,7 +24,7 @@ class _Genre_Prediction_Service:
     _instance = None
 
 
-    def predict(self, file_path):
+    def predict_genre(self, file_path):
         """
         :param file_path (str): Path to audio file to predict
         :return predicted_keyword (str): Keyword predicted by the model

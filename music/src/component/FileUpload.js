@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function File() {
+function File( {selection}) {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
   const [answer, setAnswer] = useState("");
@@ -11,21 +11,40 @@ function File() {
 
   const handleSubmission = () => {
     const formData = new FormData();
-
+    
     formData.append("file", selectedFile);
-
-    fetch("http://localhost:5000/predict", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Success:", result);
-        setAnswer(result.genre);
+    if (selection.map(current => current.id === 1)) {
+      fetch("http://localhost:5000/predict_genre", {
+        method: "POST",
+        body: formData,
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+          setAnswer(result.genre);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      
+    }
+
+    if (selection.map(current => current.id === 2)) {
+      fetch("http://localhost:5000/predict_emotion", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+          setAnswer(result.emotion);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      
+    }
+   
   };
 
   return (
@@ -51,4 +70,5 @@ function File() {
     </div>
   );
 }
+
 export default File;

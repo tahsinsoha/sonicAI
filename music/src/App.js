@@ -2,6 +2,7 @@ import React, { Component, useEffect } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
 import Dropdown from "./component/DropDown";
+import DropDown from "./component/DropDown";
 function App() {
   //   useEffect(() => {
   //     // POST request using fetch inside useEffect React hook
@@ -39,9 +40,11 @@ function App() {
           🎥
         </span>
       </h1>
-      <Dropdown title="Select movie" items={items} multiSelect />
+      <p> {DropDown.selection}</p>
+      <Dropdown title="Select type" items={items} multiSelect />
     </div>
-      <FileUpload />
+      <FileUpload selection= {DropDown.selection} />
+     
     </div>
   );
 }
