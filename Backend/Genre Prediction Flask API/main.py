@@ -57,7 +57,7 @@ def predict_emotion():
 	audio_file.save(file_name)
 
 	# instantiate keyword spotting service singleton and get prediction
-	eps = Emotion_Prediction_Service()
+	eps = Emotion_prediction_service()
 	predicted_emotion = eps.predict(file_name)
 	#print("type holo ", type(gps))
 	

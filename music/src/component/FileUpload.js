@@ -3,7 +3,10 @@ import React, { useState } from "react";
 function File( {selection}) {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
-  const [answer, setAnswer] = useState("");
+  const [genre, setGenre] = useState("");
+  const [emotion, setEmotion] = useState("");
+  const [note, setNote] = useState("");
+  
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsSelected(true);
@@ -13,7 +16,7 @@ function File( {selection}) {
     const formData = new FormData();
     
     formData.append("file", selectedFile);
-    if (selection.map(current => current.id === 1)) {
+    if (selection.some(current => current.id === 1)) {
       fetch("http://localhost:5000/predict_genre", {
         method: "POST",
         body: formData,
@@ -21,7 +24,7 @@ function File( {selection}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setAnswer(result.genre);
+          setGenre(result.genre);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -29,7 +32,7 @@ function File( {selection}) {
       
     }
 
-    if (selection.map(current => current.id === 2)) {
+    if (selection.some(current => current.id === 2)) {
       fetch("http://localhost:5000/predict_emotion", {
         method: "POST",
         body: formData,
@@ -37,7 +40,7 @@ function File( {selection}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setAnswer(result.emotion);
+          setEmotion(result.emotion);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -65,7 +68,9 @@ function File( {selection}) {
       )}
       <div>
         <button onClick={handleSubmission}>Submit</button>
-        <p>{answer}</p>
+        <p>{genre}</p>
+        <p>{emotion}</p>
+        
       </div>
     </div>
   );
