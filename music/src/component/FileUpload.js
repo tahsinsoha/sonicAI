@@ -3,7 +3,10 @@ import React, { useState } from "react";
 function File( {selection}) {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
-  const [answer, setAnswer] = useState("");
+  const [genre, setGenre] = useState("");
+  const [emotion, setEmotion] = useState("");
+  const [note, setNote] = useState("");
+  
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsSelected(true);
@@ -21,7 +24,7 @@ function File( {selection}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setAnswer(result.genre);
+          setGenre(result.genre);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -37,7 +40,7 @@ function File( {selection}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setAnswer(result.emotion);
+          setEmotion(result.emotion);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -65,7 +68,9 @@ function File( {selection}) {
       )}
       <div>
         <button onClick={handleSubmission}>Submit</button>
-        <p>{answer}</p>
+        <p>{genre}</p>
+        <p>{emotion}</p>
+        
       </div>
     </div>
   );
