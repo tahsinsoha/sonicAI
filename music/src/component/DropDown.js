@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import "./Drop.scss"
-function Dropdown({ title, items, selection, change, multiSelect = false }) {
+function Dropdown({ title, items, selection , change , multiSelect = false }) {
   const [open, setOpen] = useState(false);
-  
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 

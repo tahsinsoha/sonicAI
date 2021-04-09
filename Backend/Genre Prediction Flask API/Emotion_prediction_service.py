@@ -38,6 +38,7 @@ class _Emotion_prediction_service:
         print("shape", MFCCs.shape)
         # get the predicted label
         predictions = self.model.predict(MFCCs)
+        print(predictions)
         predicted_index = np.argmax(predictions, axis= 1)
         predicted_keyword = np.array(self._mapping)[predicted_index.astype(int)]
         return predicted_keyword[0]
@@ -84,10 +85,10 @@ def Emotion_prediction_service():
     """
 
     # ensure an instance is created only the first time the factory function is called
-    if _Emotion_Prediction_Service._instance is None:
-        _Emotion_Prediction_Service._instance = _Emotion_Prediction_Service()
-        _Emotion_Prediction_Service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
-    return _Emotion_Prediction_Service._instance
+    if _Emotion_prediction_service._instance is None:
+        _Emotion_prediction_service._instance = _Emotion_prediction_service()
+        _Emotion_prediction_service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
+    return _Emotion_prediction_service._instance
 
 
 
@@ -95,12 +96,12 @@ def Emotion_prediction_service():
 if __name__ == "__main__":
 
     # create 2 instances of the keyword spotting service
-    eps = Emotion_Prediction_Service()
-    eps1 = Emotion_Prediction_Service()
+    eps = Emotion_prediction_service()
+    eps1 = Emotion_prediction_service()
 
     # check that different instances of the keyword spotting service point back to the same object (singleton)
     assert eps is eps1
 
     # make a prediction
-    keyword = eps.predict("/content/drive/MyDrive/Emotions_original/disco/disco.00009.wav")
+    keyword = eps.predict_emotion("/content/drive/MyDrive/Emotions_original/disco/disco.00009.wav")
     print(keyword)

@@ -1,8 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect , useState } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
 import Dropdown from "./component/DropDown";
-
+import DropDown from "./component/DropDown";
 function App() {
   //   useEffect(() => {
   //     // POST request using fetch inside useEffect React hook
@@ -30,9 +30,7 @@ function App() {
       value: 'Note',
     },
   ];
-
   const [selection, setSelection] = useState([]);
-
   return (
     <div classname="App">
       <div className="container">
@@ -42,8 +40,8 @@ function App() {
           🎥
         </span>
       </h1>
-      {/* <p> {selection}</p> */}
-      <Dropdown title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect={true} />
+      
+      <Dropdown title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
     </div>
       <FileUpload selection= {selection} />
      
