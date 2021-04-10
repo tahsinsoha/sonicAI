@@ -17,11 +17,18 @@ div.upload input {
     overflow: hidden !important;
 }
 
-div.upload button {
-    display: block !important;
-    width: 157px !important;
-    height: 57px !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-}
+div.submit button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.493);
+    border: none;
+    border-radius: 15px;
+  }
+  
+  div.submit button:hover {background-color: rgb(94, 91, 91)}
+  
 

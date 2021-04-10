@@ -69,7 +69,7 @@ function File( {selection , selectedFile, up}) {
   return (
     <div>
       <div className="upload">
-      <input type="file" name="file" onChange={changeHandler} />
+      <input type="file" name="file" className = "upload"onChange={changeHandler} />
       </div>
       {isSelected ? (
         <div className="details">
@@ -86,7 +86,7 @@ function File( {selection , selectedFile, up}) {
       )}
       <div>
         <div className="submit">
-        <button onClick={handleSubmission}>Submit</button>
+        <button className = "sub" onClick={handleSubmission}>Submit</button>
         </div>
         <p style={{color: "white"}}>{genre}</p>
         <p style={{color: "white"}}>{emotion}</p>
