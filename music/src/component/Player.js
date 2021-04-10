@@ -13,7 +13,7 @@ const useAudio = (selectedFile) => {
 
   useEffect(() => {
     audio.addEventListener("ended", () => setPlaying(false));
-    return () => {
+    return () => {                             
       audio.removeEventListener("ended", () => setPlaying(false));
     };
   }, []);

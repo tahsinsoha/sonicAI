@@ -34,9 +34,9 @@ function App() {
   const [selection, setSelection] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
   return (
-    <div classname="App">
+    <div className="App">
       <div className="container">
-      <h1 style={{ textAlign: 'center' }}>
+      <h1 style={{ textAlign: 'center' , color: 'white' }}>
         Music Hub{' '}
         <span role="img" aria-label="Movie projector">
           🎥
