@@ -2,8 +2,7 @@ import React, { Component, useEffect , useState } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
 import Dropdown from "./component/DropDown";
-import Player from "./component/Player";
-import mp3_file from "./Bass Picked B-20424-Free-Loops.com.mp3";
+import "./component/animation.css";
 function App() {
   //   useEffect(() => {
   //     // POST request using fetch inside useEffect React hook
@@ -34,19 +33,31 @@ function App() {
   const [selection, setSelection] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
   return (
-    <div classname="App">
+    <div className="App">
       <div className="container">
-      <h1 style={{ textAlign: 'center' }}>
+      <h1 style={{ textAlign: 'start' ,color: "//#region " }}>
         Music Hub{' '}
         <span role="img" aria-label="Movie projector">
           🎥
         </span>
       </h1>
+      </div>
+      <Dropdown  style={{ marginTop: '20px' }}
       
-      <Dropdown title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
-    </div>
+      title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
+
       <FileUpload selection= {selection} selectedFile= {selectedFile} up={(value)=> setSelectedFile(value)} />
-      <Player selectedFile={selectedFile}/>
+
+      <div class="loader">
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+    <span class="stroke"></span>
+
+  </div>
      
     </div>
   );
