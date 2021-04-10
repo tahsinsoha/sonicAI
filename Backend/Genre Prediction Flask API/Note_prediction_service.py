@@ -2,8 +2,7 @@ import librosa
 import tensorflow as tf
 import numpy as np
 import math
-
-SAVED_MODEL_PATH = "./NoteModel.h5"
+SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\\NoteModel.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
 TRACK_DURATION = 1  # measured in seconds
@@ -46,7 +45,7 @@ class _Note_prediction_service:
         return predicted_keyword[0]
 
 
-    def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=1):
+    def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5):
         """Extract MFCCs from audio file.
         :param file_path (str): Path of audio file
         :param num_mfcc (int): # of coefficients to extract
@@ -99,12 +98,12 @@ def Note_prediction_service():
 if __name__ == "__main__":
 
     # create 2 instances of the keyword spotting service
-    eps = _Note_prediction_service()
-    eps1 = _Note_prediction_service()
+    nps = _Note_prediction_service()
+    nps1 = _Note_prediction_service()
 
     # check that different instances of the keyword spotting service point back to the same object (singleton)
-    assert eps is eps1
+    # assert nps is nps1
 
     # make a prediction
-    keyword = eps.predict("/content/drive/MyDrive/Emotions_original/disco/disco.00009.wav")
-    print(keyword)
+    # keyword = nps.predict_note("/content/drive/MyDrive/Emotions_original/disco/disco.00009.wav")
+    # print(keyword)
