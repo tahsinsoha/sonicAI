@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Player from "./Player";
+import "./dropdown.css"
 function File( {selection , selectedFile, up}) {
   const [isSelected, setIsSelected] = useState(false);
   const [genre, setGenre] = useState("");
@@ -67,9 +68,11 @@ function File( {selection , selectedFile, up}) {
 
   return (
     <div>
+      <div className="upload">
       <input type="file" name="file" onChange={changeHandler} />
+      </div>
       {isSelected ? (
-        <div>
+        <div className="details">
           <p>Filename: {selectedFile.name}</p>
           <p>Filetype: {selectedFile.type}</p>
           <p>Size in bytes: {selectedFile.size}</p>
@@ -79,13 +82,15 @@ function File( {selection , selectedFile, up}) {
           </p>
         </div>
       ) : (
-        <p>Select a file to show details</p>
+        <p style={{color: "white"}}>Select a file to show details</p>
       )}
       <div>
+        <div className="submit">
         <button onClick={handleSubmission}>Submit</button>
-        <p>{genre}</p>
-        <p>{emotion}</p>
-        <p>{note}</p>
+        </div>
+        <p style={{color: "white"}}>{genre}</p>
+        <p style={{color: "white"}}>{emotion}</p>
+        <p style={{color: "white"}}>{note}</p>
         
       </div>
     </div>

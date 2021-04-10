@@ -35,27 +35,27 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-      <h1 style={{ textAlign: 'start' ,color: "//#region " }}>
+      <h1 style={{ textAlign: 'start' ,color: "white" }}>
         Music Hub{' '}
         <span role="img" aria-label="Movie projector">
           🎥
         </span>
       </h1>
       </div>
-      <Dropdown  style={{ marginTop: '20px' }}
+      <Dropdown  className="dropdown"
       
       title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
 
       <FileUpload selection= {selection} selectedFile= {selectedFile} up={(value)=> setSelectedFile(value)} />
 
-      <div class="loader">
-    <span class="stroke"></span>
-    <span class="stroke"></span>
-    <span class="stroke"></span>
-    <span class="stroke"></span>
-    <span class="stroke"></span>
-    <span class="stroke"></span>
-    <span class="stroke"></span>
+      <div className="loader">
+    <span className="stroke"></span>
+    <span className="stroke"></span>
+    <span className="stroke"></span>
+    <span className="stroke"></span>
+    <span className="stroke"></span>
+    <span className="stroke"></span>
+    <span className="stroke"></span>
 
   </div>
      

@@ -1,6 +1,6 @@
 * {
-    margin: 0;
-    padding: 0;
+    /* margin: 20 0 0 0;
+    padding: 20 0 0 0; */
     box-sizing: border-box;
   }
   body {
@@ -9,6 +9,7 @@
     justify-content: center;
     background: linear-gradient(45deg, rgba(61, 5, 58, 0.685), #3e225a);
   }
+  
   .loader {
     height: 70px;
     display: flex;
