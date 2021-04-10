@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-
-function File( {selection}) {
-  const [selectedFile, setSelectedFile] = useState();
+import Player from "./Player";
+function File( {selection , selectedFile, up}) {
   const [isSelected, setIsSelected] = useState(false);
   const [genre, setGenre] = useState("");
   const [emotion, setEmotion] = useState("");
   const [note, setNote] = useState("");
-  
   const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
+    up(event.target.files[0]);
     setIsSelected(true);
   };
 
@@ -16,6 +14,7 @@ function File( {selection}) {
     const formData = new FormData();
     
     formData.append("file", selectedFile);
+    
     if (selection.some(current => current.id === 1)) {
       fetch("http://localhost:5000/predict_genre", {
         method: "POST",

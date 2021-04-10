@@ -2,7 +2,8 @@ import React, { Component, useEffect , useState } from "react";
 import FileUpload from "./component/FileUpload";
 import "./App.css";
 import Dropdown from "./component/DropDown";
-import DropDown from "./component/DropDown";
+import Player from "./component/Player";
+import mp3_file from "./Bass Picked B-20424-Free-Loops.com.mp3";
 function App() {
   //   useEffect(() => {
   //     // POST request using fetch inside useEffect React hook
@@ -31,6 +32,7 @@ function App() {
     },
   ];
   const [selection, setSelection] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
   return (
     <div classname="App">
       <div className="container">
@@ -43,7 +45,8 @@ function App() {
       
       <Dropdown title="Select type" items={items} selection={selection} change={(value)=> setSelection(value)} multiSelect />
     </div>
-      <FileUpload selection= {selection} />
+      <FileUpload selection= {selection} selectedFile= {selectedFile} up={(value)=> setSelectedFile(value)} />
+      <Player selectedFile={selectedFile}/>
      
     </div>
   );
