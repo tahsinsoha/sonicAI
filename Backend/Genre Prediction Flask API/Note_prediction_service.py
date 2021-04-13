@@ -2,7 +2,7 @@ import librosa
 import tensorflow as tf
 import numpy as np
 import math
-SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\\NoteModel.h5"
+SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\\NoteModelAll.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
 TRACK_DURATION = 1  # measured in seconds
@@ -21,7 +21,12 @@ class _Note_prediction_service:
         "D",
         "E",
         "F",
-        "G"
+        "G",
+        "A#",
+        "C#",
+        "D#",
+        "F#",
+        "G#"
     ]
     _instance = None
 
