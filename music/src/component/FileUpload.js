@@ -24,7 +24,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setGenre("Genre- "+result.genre);
+          setGenre("Genre: "+result.genre);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -40,7 +40,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setEmotion("Emotion- "+result.emotion);
+          setEmotion("Emotion: "+result.emotion);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -56,7 +56,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setNote("Note- "+result.note);
+          setNote("Note: "+result.note);
         })
         .catch((error) => {
           console.error("Error:", error);
