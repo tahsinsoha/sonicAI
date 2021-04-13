@@ -9,9 +9,16 @@ function File( {selection , selectedFile, up}) {
   const changeHandler = (event) => {
     up(event.target.files[0]);
     setIsSelected(true);
+    setGenre("");
+    setEmotion("");
+    setNote("");
+
   };
 
   const handleSubmission = () => {
+    setGenre("");
+    setEmotion("");
+    setNote("");
     const formData = new FormData();
     
     formData.append("file", selectedFile);

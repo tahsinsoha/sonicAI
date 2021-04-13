@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 import math
 
-SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\GenModel.h5"
+SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\GenModelMetal.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
 TRACK_DURATION = 30  # measured in seconds
@@ -18,8 +18,8 @@ class _Genre_Prediction_Service:
     _mapping = [
         "Blues",
         "Classical",
-        "Country",
-        "Disco"
+        "Disco",
+        "Metal"
     ]
     _instance = None
 
@@ -41,7 +41,7 @@ class _Genre_Prediction_Service:
         predicted_index = np.argmax(predictions, axis= 1)
         predicted_keyword = np.array(self._mapping)[predicted_index.astype(int)]
         return predicted_keyword[0]
-
+                                       
 
     def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=10):
         """Extract MFCCs from audio file.
