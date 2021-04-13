@@ -24,7 +24,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setGenre(result.genre);
+          setGenre("Genre- "+result.genre);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -40,7 +40,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setEmotion(result.emotion);
+          setEmotion("Emotion- "+result.emotion);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -56,7 +56,7 @@ function File( {selection , selectedFile, up}) {
         .then((response) => response.json())
         .then((result) => {
           console.log("Success:", result);
-          setNote(result.note);
+          setNote("Note- "+result.note);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -71,19 +71,7 @@ function File( {selection , selectedFile, up}) {
       <div className="upload">
       <input type="file" name="file" className = "upload"onChange={changeHandler} />
       </div>
-      {isSelected ? (
-        <div className="details">
-          <p>Filename: {selectedFile.name}</p>
-          <p>Filetype: {selectedFile.type}</p>
-          <p>Size in bytes: {selectedFile.size}</p>
-          <p>
-            lastModifiedDate:{" "}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p style={{color: "white"}}>Select a file to show details</p>
-      )}
+    
       <div>
         <div className="submit">
         <button className = "sub" onClick={handleSubmission}>Submit</button>
