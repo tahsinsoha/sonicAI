@@ -34,7 +34,7 @@ function App() {
   const [selectedFile, setSelectedFile] = useState();
   return (
    
-    <div className="App" img src={"https://images.unsplash.com/photo-1506157786151-b8491531f063?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"} >
+    <div className="App" >
       <div className="container">
       <h1 style={{ textAlign: 'start' ,color: "white" }}>
         Music Hub{' '}
