@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 import math
 
-SAVED_MODEL_PATH = "Backend\Genre Prediction Flask API\EmoModel.h5"
+SAVED_MODEL_PATH = "./EmoModel.h5"
 SAMPLES_TO_CONSIDER = 22050
 SAMPLE_RATE = 22050
 TRACK_DURATION = 4  # measured in seconds
